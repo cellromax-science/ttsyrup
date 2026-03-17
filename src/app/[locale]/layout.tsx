@@ -26,6 +26,20 @@ export const metadata: Metadata = {
     description: "하루 한 번, 엘더베리의 힘으로 우리 아이 건강을 채우다",
     type: "website",
     locale: "ko_KR",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "셀로맥스 어린이튼튼시럽 - 시럽, 스틱, 짜요 3종 제품",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "셀로맥스 어린이튼튼시럽",
+    description: "하루 한 번, 엘더베리의 힘으로 우리 아이 건강을 채우다",
+    images: ["/og-image.jpg"],
   },
 };
 
