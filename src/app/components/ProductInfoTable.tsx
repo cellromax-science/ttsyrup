@@ -163,12 +163,14 @@ function DesktopTable() {
             <td className="py-3 px-4 text-white/35 font-medium align-top whitespace-nowrap">
               {t("commonRows.gmo.label")}
             </td>
-            <td
-              colSpan={3}
-              className="py-3 px-4 text-white/25 align-top"
-            >
-              {t("commonRows.gmo.value")}
-            </td>
+            {PRODUCTS.map((p) => (
+              <td
+                key={p.id}
+                className="py-3 px-4 text-white/25 align-top"
+              >
+                {t("commonRows.gmo.value")}
+              </td>
+            ))}
           </tr>
         </tbody>
       </table>
