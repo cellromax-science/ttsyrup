@@ -288,7 +288,7 @@ export default function HeroSection() {
       <div className="section-inner relative z-10 min-h-screen flex items-center">
         <div className="w-full grid lg:grid-cols-2 gap-6 lg:gap-10 xl:gap-14 items-center py-24 lg:py-0">
           {/* ─── Left Column: Text ─── */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
+          <div className="text-center lg:text-left order-2 lg:order-1 px-4 sm:px-2 lg:px-0">
             {/* Badges */}
             <div className="flex gap-2.5 justify-center lg:justify-start mb-5 lg:mb-7">
               <span className="hero-badge badge badge-glass">{t("badges.pharmacyOnly")}</span>
@@ -334,10 +334,10 @@ export default function HeroSection() {
           </div>
 
           {/* ─── Right Column: 3 Products — Bounds-Aware Positioning ─── */}
-          <div className="relative order-1 lg:order-2 flex items-center justify-center lg:self-stretch">
+          <div className="relative order-1 lg:order-2 flex items-center justify-center lg:self-stretch px-4 sm:px-0">
             <div
               ref={stageRef}
-              className="hero-product-stage relative w-full h-[360px] sm:h-[440px] lg:h-full"
+              className="hero-product-stage relative w-[90%] sm:w-full mx-auto h-[360px] sm:h-[440px] lg:h-full"
             >
               {/* ── Product spotlight glow ── */}
               <div
