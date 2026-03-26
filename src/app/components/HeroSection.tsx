@@ -160,6 +160,7 @@ export default function HeroSection() {
       raf2Id = requestAnimationFrame(() => {
         ctx = gsap.context(() => {
           /* ── Set initial hidden state ── */
+          gsap.set(".hero-brand-bar", { opacity: 0, y: -8 });
           gsap.set(".hero-badge", { opacity: 0, y: 14, scale: 0.92 });
           gsap.set(".hero-headline", { opacity: 0, y: 44 });
           gsap.set(".hero-sub", { opacity: 0, y: 28 });
@@ -177,7 +178,13 @@ export default function HeroSection() {
             defaults: { ease: "power3.out" },
           });
 
-          tl.to(".hero-badge", {
+          tl.to(".hero-brand-bar", {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            ease: "power2.out",
+          })
+            .to(".hero-badge", {
             opacity: 1,
             y: 0,
             scale: 1,
@@ -284,6 +291,36 @@ export default function HeroSection() {
         />
       </div>
 
+      {/* ═══════ Brand Bar — back to cellromax.kr ═══════ */}
+      <div className="hero-brand-bar relative z-10 w-full">
+        <div className="section-inner">
+          <a
+            href="https://cellromax.kr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 h-9 lg:h-10 text-[11px] font-medium text-white/30 hover:text-white/50 transition-colors tracking-wider py-2"
+            aria-label={t("brandBar.ariaLabel")}
+          >
+            {/* Back arrow SVG — 12px, thin stroke */}
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              className="w-3 h-3 flex-shrink-0"
+              aria-hidden="true"
+            >
+              <path
+                d="M10 3L5 8l5 5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>cellromax.kr</span>
+          </a>
+        </div>
+      </div>
+
       {/* ═══════ Main Hero Content ═══════ */}
       <div className="section-inner relative z-10 min-h-screen flex items-center">
         <div className="w-full grid lg:grid-cols-2 gap-6 lg:gap-10 xl:gap-14 items-center py-24 lg:py-0">
@@ -322,9 +359,15 @@ export default function HeroSection() {
               {t("body.line3")}
             </p>
 
+            {/* ── 식품 안내 문구 ── */}
+            <p className="hero-body text-white/40 mb-5 lg:mb-6 text-center lg:text-left"
+               style={{ fontSize: "var(--font-size-body-sm)" }}>
+              {t("foodDisclaimer")}
+            </p>
+
             {/* ── CTA Buttons ── */}
             <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-              <a href="#ingredient-cards" className="hero-cta btn-primary">
+              <a href="#nutrition-balance" className="hero-cta btn-primary">
                 {t("cta.viewIngredients")}
               </a>
               <a href="#pharmacy-finder" className="hero-cta btn-glass">
@@ -334,7 +377,7 @@ export default function HeroSection() {
           </div>
 
           {/* ─── Right Column: 3 Products — Bounds-Aware Positioning ─── */}
-          <div className="relative order-1 lg:order-2 flex items-center justify-center lg:self-stretch px-4 sm:px-0">
+          <div className="relative order-1 lg:order-2 flex flex-col items-center justify-center lg:self-stretch px-4 sm:px-0">
             <div
               ref={stageRef}
               className="hero-product-stage relative w-[90%] sm:w-full mx-auto h-[360px] sm:h-[440px] lg:h-full"
@@ -379,6 +422,7 @@ export default function HeroSection() {
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </div>

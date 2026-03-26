@@ -31,6 +31,10 @@
       "viewIngredients": "View Ingredients ↓",
       "findPharmacy": "Find a Pharmacy"
     },
+    "foodDisclaimer": "This product is a general food, not a pharmaceutical",
+    "brandBar": {
+      "ariaLabel": "Go to Cellromax homepage"
+    },
     "scrollHint": "Scroll",
     "products": {
       "syrup": "Health Syrup",
@@ -403,7 +407,8 @@
     "links": {
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
-      "bizInfo": "Business Information"
+      "bizInfo": "Business Information",
+      "cellromaxHome": "Cellromax Homepage"
     },
     "copyright": "© 2026 Cellromax. All rights reserved."
   },

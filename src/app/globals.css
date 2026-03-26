@@ -261,6 +261,12 @@ body {
    BUTTON SYSTEM — Warm Gradient, Micro-interactions
    ══════════════════════════════════════════════════ */
 
+.btn-squircle {
+  --squircle-smooth: 0.7;
+  mask-image: paint(squircle);
+  -webkit-mask-image: paint(squircle);
+}
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -268,7 +274,7 @@ body {
   gap: 0.5rem;
   height: 56px;
   padding-inline: 2rem;
-  border-radius: 16px;
+  border-radius: 50px;
   background: linear-gradient(135deg, var(--color-coral-light), var(--color-coral));
   color: white;
   font-weight: 600;
@@ -338,7 +344,7 @@ body {
   gap: 0.5rem;
   height: 56px;
   padding-inline: 2rem;
-  border-radius: 16px;
+  border-radius: 50px;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
@@ -373,10 +379,11 @@ body {
   .btn-primary,
   .btn-glass,
   .btn-secondary {
-    height: 46px;
-    padding-inline: 1.4rem;
-    border-radius: 13px;
-    font-size: 0.9rem;
+    height: 44px;
+    padding-inline: 1.2rem;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    white-space: nowrap;
   }
 }
 

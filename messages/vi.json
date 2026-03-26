@@ -31,6 +31,10 @@
       "viewIngredients": "Xem chi tiết thành phần ↓",
       "findPharmacy": "Tìm nhà thuốc gần nhất"
     },
+    "foodDisclaimer": "Sản phẩm này là thực phẩm thông thường, không phải dược phẩm",
+    "brandBar": {
+      "ariaLabel": "Truy cập trang chủ Cellromax"
+    },
     "scrollHint": "Scroll",
     "products": {
       "syrup": "Siro Sức Khỏe",
@@ -403,7 +407,8 @@
     "links": {
       "privacy": "Chính sách bảo mật",
       "terms": "Điều khoản sử dụng",
-      "bizInfo": "Thông tin doanh nghiệp"
+      "bizInfo": "Thông tin doanh nghiệp",
+      "cellromaxHome": "Trang chủ Cellromax"
     },
     "copyright": "© 2026 Cellromax. All rights reserved."
   },

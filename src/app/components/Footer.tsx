@@ -145,24 +145,34 @@ export default function Footer() {
             {/* Links */}
             <div className="flex items-center gap-4 text-[11px]">
               <a
-                href="#"
+                href="/privacy"
                 className="text-white/25 hover:text-white/50 transition-colors"
               >
                 {t("links.privacy")}
               </a>
-              <span className="w-px h-3 bg-white/10" />
+              <span className="text-white/10" aria-hidden="true">|</span>
               <a
-                href="#"
-                className="text-white/25 hover:text-white/50 transition-colors"
+                href="https://cellromax.kr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-white/25 hover:text-white/50 transition-colors"
               >
-                {t("links.terms")}
-              </a>
-              <span className="w-px h-3 bg-white/10" />
-              <a
-                href="#"
-                className="text-white/25 hover:text-white/50 transition-colors"
-              >
-                {t("links.bizInfo")}
+                <span>{t("links.cellromaxHome")}</span>
+                {/* External link arrow */}
+                <svg
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  className="w-2.5 h-2.5 flex-shrink-0"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.5 2.5h6m0 0v6m0-6L2.5 9.5"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </a>
             </div>
 
