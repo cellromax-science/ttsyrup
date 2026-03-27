@@ -320,9 +320,20 @@
       "placeholder": "Enter area name or pharmacy name",
       "button": "Search Pharmacy"
     },
+    "location": {
+      "findNearby": "Find nearby pharmacies",
+      "loading": "Finding your location...",
+      "notSupported": "Location services are not available in this browser.",
+      "error": "Unable to get your location. Please check your location permissions."
+    },
     "map": {
-      "preparing": "Pharmacy search is coming soon",
-      "callGuide": "Please call us and we'll help you find a nearby pharmacy"
+      "loading": "Loading map...",
+      "geocoding": "Locating pharmacies..."
+    },
+    "resultCount": "{count} pharmacies found",
+    "list": {
+      "noResults": "No results found. Try searching with a different area or pharmacy name.",
+      "loadMore": "Load more pharmacies"
     },
     "notice": "Please call the pharmacy to confirm product availability before visiting",
     "contact": {

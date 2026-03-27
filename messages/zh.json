@@ -320,9 +320,20 @@
       "placeholder": "请输入地区名或药房名",
       "button": "搜索药房"
     },
+    "location": {
+      "findNearby": "查找附近药房",
+      "loading": "正在获取位置...",
+      "notSupported": "此浏览器不支持位置服务。",
+      "error": "无法获取您的位置。请检查位置权限设置。"
+    },
     "map": {
-      "preparing": "药房搜索功能即将上线",
-      "callGuide": "请致电我们，我们将为您推荐附近药房"
+      "loading": "正在加载地图...",
+      "geocoding": "正在定位药房..."
+    },
+    "resultCount": "共 {count} 家药房",
+    "list": {
+      "noResults": "未找到结果。请尝试使用其他地区名或药房名搜索。",
+      "loadMore": "查看更多药房"
     },
     "notice": "建议先致电药房确认产品种类和库存后再前往",
     "contact": {

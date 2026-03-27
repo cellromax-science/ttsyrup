@@ -320,9 +320,20 @@
       "placeholder": "Nhập tên khu vực hoặc tên nhà thuốc",
       "button": "Tìm nhà thuốc"
     },
+    "location": {
+      "findNearby": "Tìm nhà thuốc gần đây",
+      "loading": "Đang xác định vị trí...",
+      "notSupported": "Trình duyệt này không hỗ trợ dịch vụ vị trí.",
+      "error": "Không thể lấy vị trí của bạn. Vui lòng kiểm tra quyền truy cập vị trí."
+    },
     "map": {
-      "preparing": "Tính năng tìm nhà thuốc sắp ra mắt",
-      "callGuide": "Vui lòng gọi cho chúng tôi để được hướng dẫn nhà thuốc gần nhất"
+      "loading": "Đang tải bản đồ...",
+      "geocoding": "Đang xác định vị trí nhà thuốc..."
+    },
+    "resultCount": "Tổng cộng {count} nhà thuốc",
+    "list": {
+      "noResults": "Không tìm thấy kết quả. Hãy thử tìm kiếm với tên khu vực hoặc nhà thuốc khác.",
+      "loadMore": "Xem thêm nhà thuốc"
     },
     "notice": "Vui lòng gọi trước cho nhà thuốc để xác nhận loại sản phẩm và tình trạng còn hàng",
     "contact": {
