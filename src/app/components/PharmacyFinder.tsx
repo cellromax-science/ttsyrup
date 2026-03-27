@@ -52,6 +52,7 @@ export default function PharmacyFinder() {
   const [selectedPharmacy, setSelectedPharmacy] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(LIST_PAGE_SIZE);
   const [isGeocoding, setIsGeocoding] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false); // 검색/내주변찾기 전까지 리스트 숨김
 
   /* ── Refs ── */
   const mapContainerRef = useRef<HTMLDivElement>(null);
@@ -288,19 +289,7 @@ export default function PharmacyFinder() {
     initializeMap();
   }, [initializeMap]);
 
-  /* ── Geocode and display initial batch on map ready ── */
-  useEffect(() => {
-    if (!mapReady || pharmacies.length === 0) return;
-
-    // Geocode first page of pharmacies
-    const initialBatch = filteredPharmacies.slice(0, LIST_PAGE_SIZE);
-    batchGeocode(initialBatch).then((newMap) => {
-      if (newMap) {
-        placeMarkers(newMap, initialBatch);
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapReady, pharmacies.length > 0]);
+  /* ── Map ready: no initial markers (wait for search/nearby) ── */
 
   /* ── Search/filter ── */
   const handleSearch = useCallback(() => {
@@ -320,6 +309,7 @@ export default function PharmacyFinder() {
     setFilteredPharmacies(results);
     setVisibleCount(LIST_PAGE_SIZE);
     setSelectedPharmacy(null);
+    setHasSearched(true);
 
     // Geocode and display filtered results
     const batch = results.slice(0, LIST_PAGE_SIZE);
@@ -369,6 +359,7 @@ export default function PharmacyFinder() {
         const userLat = position.coords.latitude;
         const userLng = position.coords.longitude;
         setUserLocation({ lat: userLat, lng: userLng });
+        setHasSearched(true);
 
         // Center map on user location
         if (mapRef.current) {
@@ -607,10 +598,12 @@ export default function PharmacyFinder() {
                 {isLocating ? t("location.loading") : t("location.findNearby")}
               </button>
 
-              {/* Result count */}
-              <span className="text-body-sm text-text-tertiary">
-                {t("resultCount", { count: filteredPharmacies.length })}
-              </span>
+              {/* Result count — only show after search/nearby */}
+              {hasSearched && (
+                <span className="text-body-sm text-text-tertiary">
+                  {t("resultCount", { count: filteredPharmacies.length })}
+                </span>
+              )}
             </div>
 
             {/* Map container */}
@@ -659,9 +652,9 @@ export default function PharmacyFinder() {
             </p>
           </div>
 
-          {/* ── Pharmacy List ── */}
+          {/* ── Pharmacy List — only after search/nearby ── */}
           <div ref={bodyRef} className="max-w-[800px] mx-auto">
-            {filteredPharmacies.length === 0 ? (
+            {!hasSearched ? null : filteredPharmacies.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-body text-text-secondary">
                   {t("list.noResults")}
