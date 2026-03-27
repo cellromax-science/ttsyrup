@@ -367,20 +367,56 @@ export default function PharmacyFinder() {
           mapRef.current.setLevel(5);
         }
 
-        // Geocode all pharmacies to sort by distance
-        // For performance, geocode first 100 matches
-        const toGeocode = pharmacies.slice(0, 100);
+        // Step 1: Reverse geocode user location to find their region
+        let regionKeywords: string[] = [];
+        if (geocoderRef.current) {
+          await new Promise<void>((resolve) => {
+            geocoderRef.current!.coord2RegionCode(userLng, userLat, (result, status) => {
+              if (status === "OK" && result.length > 0) {
+                // Extract 시/도, 시/군/구 for filtering
+                const r = result[0];
+                const region1 = r.region_1depth_name || "";
+                const region2 = r.region_2depth_name || "";
+                if (region2) regionKeywords.push(region2); // e.g. "기흥구", "용인시"
+                if (region1) regionKeywords.push(region1); // e.g. "경기도"
+              }
+              resolve();
+            });
+          });
+        }
+
+        // Step 2: Filter pharmacies by region (시/구 level first, then expand if too few)
+        let regionFiltered = pharmacies;
+        if (regionKeywords.length > 0) {
+          // Try 구/군 level first (most specific)
+          const district = regionKeywords[0];
+          let matches = pharmacies.filter((p) => p.address.includes(district));
+
+          // If too few, try 시/도 level
+          if (matches.length < 5 && regionKeywords.length > 1) {
+            const city = regionKeywords[1];
+            matches = pharmacies.filter((p) => p.address.includes(city));
+          }
+
+          if (matches.length > 0) {
+            regionFiltered = matches;
+          }
+        }
+
+        // Step 3: Geocode filtered pharmacies (much smaller set)
+        const toGeocode = regionFiltered.slice(0, 80);
         const newMap = await batchGeocode(toGeocode);
 
         if (newMap) {
-          // Sort by distance
-          const withDistance = pharmacies
+          // Sort by actual distance
+          const withDistance = regionFiltered
             .map((p) => {
               const geo = newMap.get(p.address);
               if (!geo) return { pharmacy: p, distance: Infinity };
               const dist = getDistance(userLat, userLng, geo.lat, geo.lng);
               return { pharmacy: p, distance: dist };
             })
+            .filter((wd) => wd.distance < Infinity) // only geocoded ones
             .sort((a, b) => a.distance - b.distance);
 
           const sorted = withDistance.map((wd) => wd.pharmacy);
@@ -390,6 +426,18 @@ export default function PharmacyFinder() {
           // Place markers for nearest
           const nearestBatch = sorted.slice(0, LIST_PAGE_SIZE);
           placeMarkers(newMap, nearestBatch);
+
+          // Fit map to nearest results
+          if (nearestBatch.length > 0 && mapRef.current) {
+            const bounds = new kakao.maps.LatLngBounds();
+            // Include user location
+            bounds.extend(new kakao.maps.LatLng(userLat, userLng));
+            for (const p of nearestBatch.slice(0, 10)) {
+              const geo = newMap.get(p.address);
+              if (geo) bounds.extend(new kakao.maps.LatLng(geo.lat, geo.lng));
+            }
+            mapRef.current.setBounds(bounds);
+          }
         }
 
         setIsLocating(false);

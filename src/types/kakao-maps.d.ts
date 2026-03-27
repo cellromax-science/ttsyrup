@@ -82,10 +82,22 @@ declare namespace kakao.maps {
       y: string;
     }
 
+    interface RegionCodeResult {
+      region_1depth_name: string;
+      region_2depth_name: string;
+      region_3depth_name: string;
+      code: string;
+    }
+
     class Geocoder {
       addressSearch(
         address: string,
         callback: (result: GeocoderResult[], status: Status) => void
+      ): void;
+      coord2RegionCode(
+        lng: number,
+        lat: number,
+        callback: (result: RegionCodeResult[], status: Status) => void
       ): void;
     }
   }
