@@ -164,11 +164,7 @@ export default function HeroSection() {
           gsap.set(".hero-badge", { opacity: 0, y: 14, scale: 0.92 });
           gsap.set(".hero-headline", { opacity: 0, y: 44 });
           gsap.set(".hero-sub", { opacity: 0, y: 28 });
-          gsap.set(".hero-product-stage", {
-            opacity: 0,
-            scale: 0.88,
-            /* filter: blur removed — animating blur on 3 product images causes heavy repaint */
-          });
+          gsap.set(".hero-product-stage", { opacity: 0 });
           gsap.set(".hero-body", { opacity: 0, y: 18 });
           gsap.set(".hero-cta", { opacity: 0, y: 18 });
           gsap.set(".hero-scroll-hint", { opacity: 0, y: -8 });
@@ -192,6 +188,11 @@ export default function HeroSection() {
             duration: 0.55,
           })
             .to(
+              ".hero-product-stage",
+              { opacity: 1, duration: 0.8, ease: "power2.out" },
+              "<" // 배지와 동시에 시작
+            )
+            .to(
               ".hero-headline",
               { opacity: 1, y: 0, duration: 1.1 },
               "-=0.25"
@@ -200,16 +201,6 @@ export default function HeroSection() {
               ".hero-sub",
               { opacity: 1, y: 0, stagger: 0.08, duration: 0.85 },
               "-=0.6"
-            )
-            .to(
-              ".hero-product-stage",
-              {
-                opacity: 1,
-                scale: 1,
-                duration: 1.4,
-                ease: "power2.out",
-              },
-              "-=0.55"
             )
             .to(
               ".hero-body",

@@ -712,11 +712,14 @@ export default function PharmacyFinder() {
               <>
                 <div className="grid gap-3">
                   {visiblePharmacies.map((pharmacy, index) => (
-                    <button
+                    <div
                       key={`${pharmacy.address}-${index}`}
                       onClick={() => handlePharmacyClick(pharmacy)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handlePharmacyClick(pharmacy); }}
                       className={`
-                        w-full text-left p-4 sm:p-5 rounded-xl border transition-all duration-300
+                        w-full text-left p-4 sm:p-5 rounded-xl border transition-all duration-300 cursor-pointer
                         ${
                           selectedPharmacy === pharmacy.address
                             ? "bg-elderberry-50 border-elderberry-200 shadow-[var(--shadow-card-hover)]"
@@ -777,7 +780,7 @@ export default function PharmacyFinder() {
                           </svg>
                         </div>
                       </div>
-                    </button>
+                    </div>
                   ))}
                 </div>
 
