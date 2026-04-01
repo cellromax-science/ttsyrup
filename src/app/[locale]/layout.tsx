@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 import "lenis/dist/lenis.css";
+import { Analytics } from "@vercel/analytics/next";
 import ScrollEngine from "../components/ScrollEngine";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 
@@ -85,6 +86,7 @@ export default async function LocaleLayout({
           <div className="scroll-progress-bar" aria-hidden="true" />
           {children}
           <LanguageSwitcher />
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>
