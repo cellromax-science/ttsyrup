@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   title: "셀로맥스 어린이튼튼시럽 | 엘더베리로 채우는 우리 아이 건강",
   description:
     "유럽산 엘더베리, 프리바이오틱스, 아미노산 7종 등 6가지 핵심 영양을 담은 어린이 건강시럽. 약국 전용, 만 1세부터.",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
   keywords: [
     "어린이튼튼시럽",
     "셀로맥스",
